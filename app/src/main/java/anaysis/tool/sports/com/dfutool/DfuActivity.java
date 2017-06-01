@@ -310,7 +310,6 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		mTextPercentage = (TextView) findViewById(R.id.textviewProgress);
 		mTextUploading = (TextView) findViewById(R.id.textviewUploading);
 		mProgressBar = (ProgressBar) findViewById(R.id.progressbar_file);
-		mProgressBar.setProgress(80);
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (isDfuServiceRunning()) {
 			// Restore image file information
@@ -669,6 +668,7 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 	 * Callback of UPDATE/CANCEL button on DfuActivity
 	 */
 	public void onUploadClicked(final View view) {
+		mProgressBar.setProgress(0);
 		if (isDfuServiceRunning()) {
 			showUploadCancelDialog();
 			return;
@@ -783,24 +783,25 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 	}
 
 	private void clearUI(final boolean clearDevice) {
-		mProgressBar.setVisibility(View.INVISIBLE);
-		mTextPercentage.setVisibility(View.INVISIBLE);
-		mTextUploading.setVisibility(View.INVISIBLE);
+//		mProgressBar.setVisibility(View.INVISIBLE);
+//		mTextPercentage.setVisibility(View.INVISIBLE);
+//		mTextUploading.setVisibility(View.INVISIBLE);
+		mProgressBar.setIndeterminate(false);
 		mConnectButton.setEnabled(true);
 		mSelectFileButton.setEnabled(true);
-		mUploadButton.setEnabled(false);
+//		mUploadButton.setEnabled(false);
 		mUploadButton.setText(R.string.dfu_action_upload);
-		if (clearDevice) {
-			mSelectedDevice = null;
-			mDeviceNameView.setText(R.string.dfu_default_name);
-		}
+//		if (clearDevice) {
+//			mSelectedDevice = null;
+//			mDeviceNameView.setText(R.string.dfu_default_name);
+//		}
 		// Application may have lost the right to these files if Activity was closed during upload (grant uri permission). Clear file related values.
-		mFileNameView.setText(null);
-		mFilePath = null;
-		mFileStreamUri = null;
-		mInitFilePath = null;
-		mInitFileStreamUri = null;
-		mStatusOk = false;
+//		mFileNameView.setText(null);
+//		mFilePath = null;
+//		mFileStreamUri = null;
+//		mInitFilePath = null;
+//		mInitFileStreamUri = null;
+//		mStatusOk = false;
 	}
 
 	private void showToast(final int messageResId) {
