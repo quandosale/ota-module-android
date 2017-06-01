@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".MainActivity">
+
+	<include
+		android:id="@+id/toolbar_actionbar"
+		layout="@layout/toolbar"/>
+
+	<RelativeLayout
+		style="@style/HeaderShadow"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentStart="true">
+
+			<!-- Application section -->
+
+			<LinearLayout
+				style="@style/Widget.List"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="@dimen/feature_horizontal_margin"
+				android:layout_marginRight="@dimen/feature_horizontal_margin"
+				android:layout_marginTop="@dimen/feature_vertical_margin_top"
+				android:orientation="vertical">
+
+				<TableLayout
+					style="@style/HeaderShadow"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/feature_section_padding">
+
+					<TableRow
+
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/textColor"
+							android:text="@string/dfu_file_name_label"/>
+
+						<TextView
+							android:id="@+id/file_name"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="5dp"
+							android:layout_weight="1"
+							android:textColor="@color/textColor"
+							android:ellipsize="middle"
+							android:freezesText="true"
+							android:lines="1"/>
+
+						<Button
+							android:id="@+id/action_select_file"
+							android:layout_width="@dimen/button_select"
+							android:layout_height="wrap_content"
+							android:onClick="onSelectFileClicked"
+							android:textAllCaps="false"
+							android:text="@string/dfu_action_select_file" />
+					</TableRow>
+				</TableLayout>
+			</LinearLayout>
+
+
+			<LinearLayout
+				style="@style/Widget.List"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="@dimen/feature_horizontal_margin"
+				android:layout_marginRight="@dimen/feature_horizontal_margin"
+				android:layout_marginTop="15dp"
+				android:orientation="vertical">
+				<TableLayout
+					style="@style/HeaderShadow"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="@dimen/feature_section_padding">
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/textColor"
+							android:text="Device Name:"/>
+
+						<TextView
+							android:id="@+id/device_name"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="5dp"
+							android:layout_weight="1"
+							android:ellipsize="middle"
+							android:freezesText="true"
+							android:lines="1"/>
+
+						<Button
+							android:id="@+id/action_connect"
+							android:layout_width="@dimen/button_select"
+							android:layout_height="wrap_content"
+							android:onClick="onConnectClicked"
+							android:textAllCaps="false"
+							android:text="@string/dfu_action_select_file" />
+					</TableRow>
+				</TableLayout>
+			</LinearLayout>
+
+			<!-- DFU section -->
+
+			<LinearLayout
+				android:id="@+id/dfu_pane"
+				style="@style/Widget.List"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="8dp"
+				android:layout_marginLeft="@dimen/feature_horizontal_margin"
+				android:layout_marginRight="@dimen/feature_horizontal_margin"
+				android:layout_marginTop="15dp"
+				android:orientation="vertical">
+				<TableLayout
+					style="@style/HeaderShadow"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+				    android:padding="@dimen/feature_section_padding">
+
+					<TableRow
+						android:layout_width="match_parent"
+						android:background="#00FFFFFF"
+						android:layout_height="wrap_content">
+
+						<ProgressBar
+							android:id="@+id/progressbar_file"
+							style="@style/CustomProgressBar"
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_marginTop="17dp"
+							android:layout_marginRight="20dp"
+							android:layout_weight="1"
+							android:max="100"/>
+						<Button
+							android:id="@+id/action_upload"
+							android:layout_width="@dimen/button_select"
+							android:layout_height="wrap_content"
+							android:enabled="false"
+							android:onClick="onUploadClicked"
+							android:textAllCaps="false"
+							android:text="Update"/>
+					</TableRow>
+				</TableLayout>
+
+				<TextView
+					android:id="@+id/textviewUploading"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/feature_section_padding"
+					android:freezesText="true"
+					android:text="@string/dfu_status_uploading"
+					android:visibility="invisible"/>
+
+				<TextView
+					android:id="@+id/textviewProgress"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/feature_section_padding"
+					android:freezesText="true"
+					android:text="@string/dfu_uploading_percentage_label"
+					android:visibility="invisible"/>
+			</LinearLayout>
+
+		</LinearLayout>
+	</RelativeLayout>
+</LinearLayout>
