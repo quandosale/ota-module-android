@@ -16,6 +16,8 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -164,7 +166,7 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 							mTextPercentage.setText("");
 						}
 					},
-					1000);
+					4000);
 		}
 
 		@Override
@@ -318,6 +320,11 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		mTextPercentage = (TextView) findViewById(R.id.textviewProgress);
 		mTextUploading = (TextView) findViewById(R.id.textviewUploading);
 		mProgressBar = (ProgressBar) findViewById(R.id.progressbar_file);
+
+		mProgressBar.getIndeterminateDrawable().setColorFilter(
+				Color.argb(250, 14, 117, 175),
+				PorterDuff.Mode.OVERLAY);
+
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		if (isDfuServiceRunning()) {
 			// Restore image file information
@@ -761,7 +768,7 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		mTextPercentage.setVisibility(View.VISIBLE);
 		mTextPercentage.setText(null);
 		mTextUploading.setText(R.string.dfu_status_uploading);
-		mTextUploading.setVisibility(View.VISIBLE);
+//		mTextUploading.setVisibility(View.VISIBLE);
 		mConnectButton.setEnabled(false);
 		mSelectFileButton.setEnabled(false);
 		mUploadButton.setEnabled(true);
