@@ -48,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Timer;
 
 import no.nordicsemi.android.dfu.DfuProgressListener;
 import no.nordicsemi.android.dfu.DfuProgressListenerAdapter;
@@ -157,6 +158,13 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		public void onDeviceDisconnecting(final String deviceAddress) {
 			mProgressBar.setIndeterminate(true);
 			mTextPercentage.setText(R.string.dfu_status_disconnecting);
+			new android.os.Handler().postDelayed(
+					new Runnable() {
+						public void run() {
+							mTextPercentage.setText("");
+						}
+					},
+					1000);
 		}
 
 		@Override
@@ -789,12 +797,12 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		mProgressBar.setIndeterminate(false);
 		mConnectButton.setEnabled(true);
 		mSelectFileButton.setEnabled(true);
-//		mUploadButton.setEnabled(false);
+		mUploadButton.setEnabled(false);
 		mUploadButton.setText(R.string.dfu_action_upload);
-//		if (clearDevice) {
-//			mSelectedDevice = null;
-//			mDeviceNameView.setText(R.string.dfu_default_name);
-//		}
+		if (clearDevice) {
+			mSelectedDevice = null;
+			mDeviceNameView.setText(R.string.dfu_default_name);
+		}
 		// Application may have lost the right to these files if Activity was closed during upload (grant uri permission). Clear file related values.
 //		mFileNameView.setText(null);
 //		mFilePath = null;
