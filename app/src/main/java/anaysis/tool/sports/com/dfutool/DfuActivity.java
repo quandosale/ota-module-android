@@ -212,6 +212,8 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 
 		@Override
 		public void onError(final String deviceAddress, final int error, final int errorType, final String message) {
+			mProgressBar.setProgress(0);
+			mTextPercentage.setText("");
 			if (mResumed) {
 				showErrorMessage(message);
 

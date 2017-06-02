@@ -70,9 +70,9 @@
 	<string name="log" formatted="false">%1$tR:%1$tS.%1$tL</string>
 
 	<string name="permission_title">Permission required</string>
-	<string name="permission_sd_text">CALM. Firmware Update would like to copy some sample applications, that may be uploaded onto your nRF51 device using the DFU (Device Firmware Update), to the memory of this device. If you agree, you will be asked to give the application permission to access files on your device.</string>
+	<string name="permission_sd_text">CALM. DFU would like to get permission, that allows to update Firmware onto your CALM. Healthcare Device.</string>
 	<string name="about_title">About</string>
 	<string name="about_version">\n\nVersion: %s</string>
-	<string name="about_text">CALM. Firmware Update is a container application that stores your Nordic Semiconductor apps in one location.</string>
+	<string name="about_text">CALM. DFU is a container application that stores your Nordic Semiconductor apps in one location.</string>
 
 </resources>
