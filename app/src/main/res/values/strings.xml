@@ -22,7 +22,7 @@
   -->
 <resources>
 
-	<string name="app_name">CALM. Firmware Update</string>
+	<string name="app_name">CALM. DFU</string>
 	<string name="font_path">fonts/trebucbd.ttf</string>
 	<string name="normal_font_path">fonts/trebuc.ttf</string>
 
