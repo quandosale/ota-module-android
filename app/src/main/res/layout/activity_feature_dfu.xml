@@ -179,6 +179,13 @@
 				</RelativeLayout>
 			</LinearLayout>
 
+			<Button
+				android:id="@+id/action_bootloader"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:onClick="onBootloaderMode"
+				android:text="Bootloader Mode"
+				android:textAllCaps="false" />
 			<TextView
 				android:id="@+id/textviewUploading"
 				android:layout_width="match_parent"

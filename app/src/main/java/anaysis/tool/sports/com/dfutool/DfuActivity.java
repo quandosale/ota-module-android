@@ -160,13 +160,6 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		public void onDeviceDisconnecting(final String deviceAddress) {
 			mProgressBar.setIndeterminate(true);
 			mTextPercentage.setText(R.string.dfu_status_disconnecting);
-			new android.os.Handler().postDelayed(
-					new Runnable() {
-						public void run() {
-							mTextPercentage.setText("");
-						}
-					},
-					4000);
 		}
 
 		@Override
@@ -696,6 +689,9 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 		}
 
 		// Save current state in order to restore it if user quit the Activity
+		mProgressBar.setIndeterminate(true);
+
+
 		final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		final SharedPreferences.Editor editor = preferences.edit();
 		editor.putString(PREFS_DEVICE_NAME, mSelectedDevice.getName());
@@ -728,6 +724,9 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 			starter.setBinOrHex(mFileType, mFileStreamUri, mFilePath).setInitFile(mInitFileStreamUri, mInitFilePath);
 		}
 		starter.start(this, DfuService.class);
+
+		mTextPercentage.setText("Connecting...");
+		mTextPercentage.setVisibility(View.VISIBLE);
 	}
 
 	private void showUploadCancelDialog() {
@@ -777,12 +776,17 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 
 	private void onTransferCompleted() {
 		clearUI(true);
+		mTextPercentage.setText("Done");
 		showToast(R.string.dfu_success);
 	}
 
 	public void onUploadCanceled() {
 		clearUI(false);
 		showToast(R.string.dfu_aborted);
+	}
+
+	public void onBootloaderMode(final View view) {
+
 	}
 
 	@Override
@@ -801,6 +805,7 @@ public class DfuActivity extends AppCompatActivity implements LoaderCallbacks<Cu
 //		mProgressBar.setVisibility(View.INVISIBLE);
 //		mTextPercentage.setVisibility(View.INVISIBLE);
 //		mTextUploading.setVisibility(View.INVISIBLE);
+
 		mProgressBar.setIndeterminate(false);
 		mConnectButton.setEnabled(true);
 		mSelectFileButton.setEnabled(true);
